@@ -42,7 +42,7 @@
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="@id/button2"
         tools:ignore="TextContrastCheck" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
         android:id="@+id/textView"
@@ -67,4 +67,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
