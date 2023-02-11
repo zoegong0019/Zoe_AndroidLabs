@@ -23,6 +23,11 @@ private static String TAG = "MainActivity";
 
         loginButton.setOnClickListener(clk -> {
             Intent nextPage = new Intent(MainActivity.this, SecondActivity.class);
+
+            nextPage.putExtra("Email","123@gmail.com");
+
+            nextPage.putExtra("Password","123456");
+
             startActivity(nextPage);
         });
     }
