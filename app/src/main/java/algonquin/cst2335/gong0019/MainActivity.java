@@ -1,39 +1,61 @@
 package algonquin.cst2335.gong0019;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
-import android.widget.ImageView;
-import android.widget.Switch;
+import android.util.Log;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView imgView;
-    Switch sw;
+private static String TAG = "MainActivity";
 
-    @Override
+
+    @Override //Application starts
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
 
-        imgView = findViewById(R.id.flagview);
-        sw = findViewById(R.id.switch1);
+        Button loginButton = findViewById(R.id.loginButton);
 
-        sw.setOnCheckedChangeListener((btn, isChecked) -> {
-            if (isChecked) {
-                RotateAnimation rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-                rotate.setDuration(5000);
-                rotate.setRepeatCount(Animation.INFINITE);
-                rotate.setInterpolator(new LinearInterpolator());
-
-                imgView.startAnimation(rotate);
-            } else {
-                imgView.clearAnimation();
-
-            }
+        loginButton.setOnClickListener(clk -> {
+            Intent nextPage = new Intent(MainActivity.this, SecondActivity.class);
+            startActivity(nextPage);
         });
+    }
+
+    @Override // Activity is now visible
+    protected void onStart() {
+        super.onStart();
+
+        Log.w(TAG, "Now visible");
+
+    }
+
+    @Override //Now responds to touch input
+    protected void onResume() {
+        super.onResume();
+
+        Log.w(TAG, "Now listen for touch");
+    }
+
+    @Override // no longer listening to touches
+    protected void onPause() {
+        super.onPause();
+
+
+    }
+
+    @Override  //no longer visible
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override //memory is garbage collected
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
