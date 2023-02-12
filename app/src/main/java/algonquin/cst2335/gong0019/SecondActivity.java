@@ -8,11 +8,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import algonquin.cst2335.gong0019.databinding.ActivitySecondBinding;
 
@@ -23,14 +26,14 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        ActivitySecondBinding binding = ActivitySecondBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         SharedPreferences sharedPreferences = getSharedPreferences("MyData", Context.MODE_PRIVATE);
         String email = sharedPreferences.getString("Email", "");
         String password = sharedPreferences.getString("Password", "");
 
         Log.d("SecondActivity", "Email: " + email + " Password: " + password);
-
-        ActivitySecondBinding binding = ActivitySecondBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
         binding.secondPageButton.setOnClickListener(clk -> {
 
@@ -42,21 +45,38 @@ public class SecondActivity extends AppCompatActivity {
         ActivityResultLauncher<Intent> cameraResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     if (result.getResultCode() == RESULT_OK) {
-                        Bundle extras = result.getData().getExtras();
-                        Bitmap imageBitmap = (Bitmap) extras.get("data");
+                        Intent data =result.getData();
+                        Bitmap imageBitmap = data.getParcelableExtra("data");
+                        FileOutputStream fOut = null;
+
+                        File sandbox = getFilesDir();
+
+                        try { fOut = openFileOutput("Picture.png", Context.MODE_PRIVATE);
+
+                            imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+
+                            fOut.flush();
+
+                            fOut.close();
+
+                        }
+                        catch(IOException ioe) {}
+
+                        int i= 0;
                         binding.imageView.setImageBitmap(imageBitmap);
                     }
                 });
-
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        binding.imageView.setOnClickListener(clk -> cameraResult.launch(cameraIntent));
-        binding.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
-            }
-        });
+        binding.imageView.setOnClickListener(v -> cameraResult.launch(cameraIntent));
+        binding.button.setOnClickListener(v -> cameraResult.launch(cameraIntent));
     }
-}
+
+    private void saveImage(Bitmap imageBitmap) {
+        // Save the image
+
+        }
+    }
+
+
 
 
