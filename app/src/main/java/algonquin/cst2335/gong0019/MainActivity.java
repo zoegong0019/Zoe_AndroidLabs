@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
         loginButton.setOnClickListener(clk -> {
             Intent nextPage = new Intent(MainActivity.this, SecondActivity.class);
-
             nextPage.putExtra("Email",emailEditText.getText().toString());
 
             nextPage.putExtra("Password",passwordEditText.getText().toString());
