@@ -1,6 +1,13 @@
-<resources>
-    <string name="app_name">Zoe\'s Android Labs</string>
-    <string name="hello_message">Hello world!</string>
-    <string name="button_message">I\'m a button</string>
 
-</resources>
+    <resources>
+        <string name="app_name">Zoe\'s Android Labs</string>
+        <string name="hello_message">"You shall not pass!"</string>
+        <string name="button_message">LOGIN</string>
+        <string name="send">SEND</string>
+        <string name="receive">RECEIVE</string>
+        <string name="type_here">Type here</string>
+        <string name="type">Type here</string>
+        <string name="message_goes_here">Message goes here</string>
+        <string name="time_goes_here">Time goes here</string>
+
+    </resources>

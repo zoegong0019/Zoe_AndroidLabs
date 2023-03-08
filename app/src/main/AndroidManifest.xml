@@ -7,10 +7,19 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/app_icon"
-        android:label="Zoe's Android Labs"
+        android:label="Zoe&apos;s Android Labs"
         android:supportsRtl="true"
         android:theme="@style/Theme.ZoesAndroidLabs"
         tools:targetApi="31">
+        <activity
+            android:name=".ChatRoom"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
