@@ -9,10 +9,11 @@
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="32dp"
         android:text="@string/message_goes_here"
         android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,14 +21,14 @@
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="292dp"
         android:text="@string/time_goes_here"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.041"
+        app:layout_constraintVertical_bias="0.056"
         tools:ignore="VisualLintBounds" />
 
     <ImageView
@@ -36,9 +37,10 @@
         android:layout_height="63dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/message"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bear"
-        android:contentDescription="@string/todo" />
+        app:srcCompat="@drawable/bear" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
