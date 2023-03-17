@@ -51,11 +51,17 @@ public class ChatRoom extends AppCompatActivity {
 
         if(messages == null)
         {
-            chatModel.messages.postValue(messages = new ArrayList<ChatMessage>());
+            messages = new ArrayList<ChatMessage>() ;
+
+
+            Executors.newSingleThreadExecutor().execute(() -> {
+                messages.addAll(mDAO.getAllMessages());//delete the msg from database
+            });
+
+            chatModel.messages.postValue(messages);
         }
 
         setContentView(binding.getRoot());
-
         binding.button.setOnClickListener(click->{
             SimpleDateFormat sdf = new SimpleDateFormat("EEEE, dd-MMM-yyyy hh-mm-ss a");
             String currentDateandTime = sdf.format(new Date());
