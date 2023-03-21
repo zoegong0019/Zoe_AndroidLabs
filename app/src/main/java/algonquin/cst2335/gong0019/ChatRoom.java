@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +27,7 @@ import algonquin.cst2335.gong0019.data.ChatMessage;
 import algonquin.cst2335.gong0019.data.ChatMessageDAO;
 import algonquin.cst2335.gong0019.data.ChatViewModel;
 import algonquin.cst2335.gong0019.data.MessageDatabase;
+import algonquin.cst2335.gong0019.data.MessageDetailsFragment;
 import algonquin.cst2335.gong0019.databinding.ActivityChatRoomBinding;
 import algonquin.cst2335.gong0019.databinding.ReceiveMessageBinding;
 import algonquin.cst2335.gong0019.databinding.SentMessageBinding;
@@ -140,6 +143,17 @@ public class ChatRoom extends AppCompatActivity {
 
         });
 
+
+        chatModel.selectedmessages.observe(this, (newMessageValue) -> {
+
+            MessageDetailsFragment chatFragment = new MessageDetailsFragment(newMessageValue);
+            FragmentManager fMgr = getSupportFragmentManager();
+            FragmentTransaction tx = fMgr.beginTransaction();
+            tx.addToBackStack("");
+            tx.replace(R.id.fragmentLocation, chatFragment);
+            tx.commit();
+        });
+
         binding.recyclerview.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -152,6 +166,7 @@ public class ChatRoom extends AppCompatActivity {
             itemView.setOnClickListener(clk -> {
                 int position = getAbsoluteAdapterPosition();
                 ChatMessage clickedMessage = messages.get(position);
+                chatModel.selectedmessages.postValue(clickedMessage);
 
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ChatRoom.this);
@@ -180,6 +195,8 @@ public class ChatRoom extends AppCompatActivity {
                         .setNegativeButton("No", (dialog, cl) -> {})
                         .create().show();
             });
+
+
             messageText = itemView.findViewById(R.id.message);
             timeText =itemView.findViewById(R.id.time);
 

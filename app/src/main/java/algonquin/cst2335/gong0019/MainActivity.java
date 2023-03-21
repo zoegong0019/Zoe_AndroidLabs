@@ -37,8 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
         btn.setOnClickListener(clk -> {
             String password = et.getText().toString();
-            verifyPassword(password);
-
+            if(verifyPassword(password)) {
+                tv.setText("Your password meets the requirements");
+            }else {
+                tv.setText("You shall not pass!");
+            }
         });
     }
     /** This function should check if this string has an Upper Case letter,

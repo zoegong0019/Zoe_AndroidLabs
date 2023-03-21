@@ -9,7 +9,10 @@
         <string name="type">Type here</string>
         <string name="message_goes_here">Message goes here</string>
         <string name="time_goes_here">Time goes here</string>
+        <string name="send_receive">Send receive goes here</string>
+        <string name="databaseId">Database id goes here</string>
         <string name="todo">TODO</string>
         <string name="image">TODO</string>
+        <string name="icon">icon</string>
 
     </resources>
