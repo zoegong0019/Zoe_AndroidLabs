@@ -8,6 +8,10 @@
     android:layout_height="match_parent"
     tools:context=".ChatRoom">
 
+    <include
+        layout = "@layout/toolbar"
+        android:id="@+id/toolbar_layout" />
+
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/recyclerview"
     android:layout_width="300dp"

@@ -14,5 +14,7 @@
         <string name="todo">TODO</string>
         <string name="image">TODO</string>
         <string name="icon">icon</string>
+        <string name="delete_this_item">Delete this item</string>
+        <string name="about">About</string>
 
     </resources>
